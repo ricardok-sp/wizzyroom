@@ -3,6 +3,11 @@ import React from 'react';
 const HeroSection = () => (
   <section className="hero-bg text-gray-800 py-20">
     <div className="container mx-auto px-4 text-center">
+      <img 
+        src="/wizzyroom.svg" 
+        alt="WizzyRoom logo" 
+        className="mx-auto mt-2 mb-12 max-w-xs md:max-w-md w-full h-auto object-contain"
+      />
       <h1 className="text-4xl md:text-5xl font-bold mb-4">Turn Any Room into a Magical, Interactive Experience</h1>
       <p className="text-lg md:text-xl mb-8">WizzyRoom is a turnkey solution that brings walls to life with sound, stories, and immersive learning.</p>
       <div className="flex justify-center space-x-4">
