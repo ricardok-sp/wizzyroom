@@ -57,7 +57,7 @@ export default function WatchMagicSection() {
   const playHotspotSound = (hotspotIdx) => {
     const lang = selectedLanguage;
     const mode = selectedMode;
-    const file = `audio_labels/hotspot${hotspotIdx+1}_${lang}_${mode}.mp3`;
+    const file = `/audio_labels/hotspot${hotspotIdx+1}_${lang}_${mode}.mp3`;
     const audio = new window.Audio(file);
     audio.play();
   };
