@@ -252,7 +252,7 @@ const faqData = [
   },
   {
     question: "Does it require power or Wi-Fi?",
-    answer: "Only a basic power outlet. No internet required for interaction."
+    answer: "No Wi-Fi needed. The Magic Wand already comes with batteries that last for a whole month, and are rechargeable through USB using any cell phone charger."
   },
   {
     question: "Can I update the theme later?",

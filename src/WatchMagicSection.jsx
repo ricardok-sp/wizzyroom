@@ -53,7 +53,15 @@ export default function WatchMagicSection() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [openHotspot]);
 
-  // Toca o som ao selecionar idioma ou modo
+  // Toca o som do label do hotspot
+  const playHotspotSound = (hotspotIdx) => {
+    const lang = selectedLanguage;
+    const mode = selectedMode;
+    const file = `audio_labels/hotspot${hotspotIdx+1}_${lang}_${mode}.mp3`;
+    const audio = new window.Audio(file);
+    audio.play();
+  };
+  // Toca o som ao selecionar idioma ou modo (continua genérico)
   const playSound = () => {
     const audio = new window.Audio('sound.mp3');
     audio.play();
@@ -81,7 +89,10 @@ export default function WatchMagicSection() {
                   key={idx}
                   className="hotspot hotspot-large"
                   style={{ top: pos.top, left: pos.left }}
-                  onClick={() => setOpenHotspot(idx)}
+                  onClick={() => {
+                    setOpenHotspot(idx);
+                    playHotspotSound(idx);
+                  }}
                   aria-label={`Hotspot ${idx + 1}`}
                 >
                   <FaMagic className="text-purpleLogo animate-pulse" size={14} />
@@ -100,9 +111,15 @@ export default function WatchMagicSection() {
                   }}
                 >
                   <div className="flex items-center bg-yellowLogo/90 rounded-lg shadow-lg px-3 py-2">
-                    <span className="speaker-icon mr-2 animate-bounce">
+                    <button
+                      className="speaker-icon mr-2 animate-bounce focus:outline-none"
+                      style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                      onClick={() => playHotspotSound(openHotspot)}
+                      tabIndex={0}
+                      aria-label="Play label audio"
+                    >
                       <FaVolumeUp className="text-purpleLogo animate-pulse" size={16} />
-                    </span>
+                    </button>
                     <span className="font-semibold text-purpleLogo text-base">
                       {hotspotLabels[openHotspot]?.[selectedLanguage]?.[selectedMode] || 'Magic!'}
                     </span>
