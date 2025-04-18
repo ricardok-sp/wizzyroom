@@ -201,13 +201,21 @@ const CatalogForm = () => {
   // Detect if running locally
   const isLocal = typeof window !== 'undefined' && window.location.hostname === 'localhost';
 
-  function handleLocalSubmit(e) {
-    if (isLocal) {
-      e.preventDefault();
+  const handleLocalSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      });
       setSuccess(true);
+    } catch (error) {
+      alert("Submission error");
     }
-    // No else: Netlify Forms will handle normally in production
-  }
+  };
 
   return (
     <section id="catalog" className="py-16 bg-purpleLogo/10">
@@ -225,11 +233,11 @@ const CatalogForm = () => {
               method="POST" 
               data-netlify="true" 
               netlify-honeypot="bot-field"
-              action="/"
               className="space-y-4"
+              onSubmit={handleLocalSubmit}
             >
-  <input type="hidden" name="form-name" value="catalog-download" />
-  <input type="hidden" name="bot-field" />
+              <input type="hidden" name="form-name" value="catalog-download" />
+              <input type="hidden" name="bot-field" />
               {/* Netlify form detection */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name</label>
