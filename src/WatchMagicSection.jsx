@@ -167,12 +167,15 @@ export default function WatchMagicSection() {
               ))}
               {openHotspot !== null && (
                 <div
-                  className="hotspot-popup animate-fade-in"
+                  className={`hotspot-popup animate-fade-in${parseInt(hotspots[openHotspot].left) > 55 ? ' right' : ''}`}
                   style={{
                     top: hotspots[openHotspot].top,
                     left: hotspots[openHotspot].left,
                     position: 'absolute',
-                    transform: 'translate(-50%, -120%)',
+                    transform:
+                      parseInt(hotspots[openHotspot].left) > 55
+                        ? 'translate(-110%, -90%)'
+                        : 'translate(-50%, -120%)',
                     minWidth: 120,
                     zIndex: 20,
                   }}
@@ -191,8 +194,10 @@ export default function WatchMagicSection() {
                       {(() => {
                         let label = hotspotLabels[openHotspot]?.[selectedLanguage]?.[selectedMode] || 'Magic!';
                         // Funfact multilíngue
-                        if (selectedMode === 'funfact' && openHotspot !== null && funfacts[openHotspot]) {
-                          label = funfacts[openHotspot][selectedLanguage] || funfacts[openHotspot]['en'];
+                        if (selectedMode === 'funfact' && openHotspot !== null && funfacts[openHotspot] && funfacts[openHotspot][selectedLanguage]) {
+                          label = funfacts[openHotspot][selectedLanguage];
+                        } else if (selectedMode === 'funfact' && openHotspot !== null && funfacts[openHotspot]) {
+                          label = funfacts[openHotspot]['en'];
                         }
                         if (selectedMode === 'anthem') {
                           const anthemData = [
