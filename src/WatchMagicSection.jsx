@@ -112,7 +112,7 @@ export default function WatchMagicSection() {
       pt: "Os Estados Unidos são conhecidos por sua diversidade cultural e geográfica. É o lar de várias cidades icônicas, como Nova York, Los Angeles e Las Vegas, e de paisagens deslumbrantes, como o Grand Canyon e o Parque Nacional de Yellowstone.",
       en: "The United States is known for its cultural and geographic diversity. It's home to several iconic cities like New York, Los Angeles, and Las Vegas, as well as stunning landscapes such as the Grand Canyon and Yellowstone National Park.",
       es: "Estados Unidos es conocido por su diversidad cultural y geográfica. Es el hogar de varias ciudades icónicas como Nueva York, Los Ángeles y Las Vegas, y de paisajes impresionantes como el Gran Cañón y el Parque Nacional de Yellowstone.",
-      fr: "Les États-Unis sont connus pour leur diversité culturelle et géographique. Ils abritent plusieurs villes emblématiques comme New York, Los Angeles et Las Vegas, ainsi que des paysages à couper le souffle tels que le Grand Canyon et le parc national de Yellowstone."
+      fr: "Les États-Unis sont connus pour leur diversité culturelle et géographique. Ils abritent plusieurs villes emblématiques comme New York, Los Angeles et Las Vegas, ainsi que des paysages à couper le souffle tels que le Grand Canyon et le parc national de Yellowstone.",
     },
     {
       pt: "Você sabia que o Egito é lar das antigas pirâmides de Gizé, incluindo a Grande Pirâmide de Quéops, uma das Sete Maravilhas do Mundo Antigo? Além disso, o Egito é famoso por seus templos, tumbas dos faraós, passeios de camelo e cruzeiros pelo Rio Nilo. É um país cheio de mistérios e grandiosidade histórica!",
