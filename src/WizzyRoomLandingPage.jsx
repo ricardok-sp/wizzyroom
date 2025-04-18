@@ -220,15 +220,16 @@ const CatalogForm = () => {
               Thank you! We received your request and will contact you soon by email.
             </div>
           ) : (
-              <form 
-                name="catalog-download" 
-                method="POST" 
-                data-netlify="true" 
-                netlify-honeypot="bot-field"
-                action="/"
-                className="space-y-4"
-              >
-              <input type="hidden" name="form-name" value="catalog-download" />
+            <form 
+              name="catalog-download" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              action="/"
+              className="space-y-4"
+            >
+  <input type="hidden" name="form-name" value="catalog-download" />
+  <input type="hidden" name="bot-field" />
               {/* Netlify form detection */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name</label>
