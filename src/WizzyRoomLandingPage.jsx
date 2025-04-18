@@ -226,6 +226,7 @@ const CatalogForm = () => {
               data-netlify="true" 
               className="space-y-4"
               onSubmit={handleLocalSubmit}
+              netlify
             >
               <input type="hidden" name="form-name" value="catalog-download" />
               <div>
