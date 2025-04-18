@@ -42,12 +42,18 @@
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(162,89,255,0.10);
   padding: 0;
-  min-width: 220px;
-  max-width: 520px;
-  width: 100%;
+  min-width: 120px;
+  max-width: 320px;
+  width: auto;
   z-index: 20;
   word-break: break-word;
   white-space: pre-line;
+}
+
+.hotspot-popup.funfact {
+  min-width: 220px;
+  max-width: 520px;
+  width: 100%;
 }
 
 .hotspot-popup.right {

@@ -167,7 +167,7 @@ export default function WatchMagicSection() {
               ))}
               {openHotspot !== null && (
                 <div
-                  className={`hotspot-popup animate-fade-in${parseInt(hotspots[openHotspot].left) > 55 ? ' right' : ''}`}
+                  className={`hotspot-popup animate-fade-in${selectedMode === 'funfact' ? ' funfact' : ''}${selectedMode === 'funfact' && parseInt(hotspots[openHotspot].left) > 55 ? ' right' : ''}`}
                   style={{
                     top: hotspots[openHotspot].top,
                     left: hotspots[openHotspot].left,
