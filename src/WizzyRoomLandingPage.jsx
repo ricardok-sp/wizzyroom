@@ -189,36 +189,91 @@ const ThemesSection = () => {
   );
 };
 
-const CatalogForm = () => (
-  <section id="catalog" className="py-16 bg-purpleLogo/10">
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center mb-12">Get the Catalog</h2>
-      <p className="text-center mb-8 text-lg">💫 Download our free catalog and get 10% off your first room!</p>
-      <div className="max-w-md mx-auto bg-white/80 p-8 rounded-lg shadow-md">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name</label>
-          <input type="text" id="name" className="mt-1 block w-full p-2 border rounded-md" placeholder="Your Name" />
-        </div>
-        <div className="mt-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Your Email</label>
-          <input type="email" id="email" className="mt-1 block w-full p-2 border rounded-md" placeholder="Your Email" />
-        </div>
-        <div className="mt-4">
-          <label htmlFor="role" className="block text-sm font-medium text-gray-700">Select Your Role</label>
-          <select id="role" className="mt-1 block w-full p-2 border rounded-md">
-            <option>Designer</option>
-            <option>Builder/Renovator</option>
-            <option>Homeowner</option>
-            <option>Property Manager</option>
-          </select>
-        </div>
-        <div className="mt-6 text-center">
-          <button className="cta-button">Download Catalog</button>
+const CatalogForm = () => {
+  const [success, setSuccess] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('success=true')) {
+      setSuccess(true);
+    }
+  }, []);
+
+  // Detect if running locally
+  const isLocal = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+
+  function handleLocalSubmit(e) {
+    if (isLocal) {
+      e.preventDefault();
+      setSuccess(true);
+    }
+    // No else: Netlify Forms will handle normally in production
+  }
+
+  return (
+    <section id="catalog" className="py-16 bg-purpleLogo/10">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-12">Get the Catalog</h2>
+        <p className="text-center mb-8 text-lg">💫 Download our free catalog and get 10% off your first room!</p>
+        <div className="max-w-md mx-auto bg-white/80 p-8 rounded-lg shadow-md">
+          {success ? (
+            <div className="text-center text-purpleLogo font-semibold text-lg">
+              Thank you! We received your request and will contact you soon by email.
+            </div>
+          ) : (
+            <form 
+              name="catalog-download" 
+              method="POST" 
+              data-netlify="true" 
+              className="space-y-4"
+              onSubmit={handleLocalSubmit}
+            >
+              <input type="hidden" name="form-name" value="catalog-download" />
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name"
+                  className="mt-1 block w-full p-2 border rounded-md" 
+                  placeholder="Your Name" 
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Your Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email"
+                  className="mt-1 block w-full p-2 border rounded-md" 
+                  placeholder="Your Email" 
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="role" className="block text-sm font-medium text-gray-700">Select Your Role</label>
+                <select 
+                  id="role" 
+                  name="role"
+                  className="mt-1 block w-full p-2 border rounded-md"
+                  required
+                >
+                  <option>Designer</option>
+                  <option>Builder/Renovator</option>
+                  <option>Homeowner</option>
+                  <option>Property Manager</option>
+                </select>
+              </div>
+              <div className="mt-6 text-center">
+                <button className="cta-button" type="submit">Download Catalog</button>
+              </div>
+            </form>
+          )}
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const TestimonialsSection = () => (
   <section className="py-16 bg-blueLogo/10">
