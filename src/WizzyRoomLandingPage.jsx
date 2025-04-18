@@ -228,53 +228,25 @@ const CatalogForm = () => {
               Thank you! We received your request and will contact you soon by email.
             </div>
           ) : (
-            <form 
-              name="catalog-download" 
-              method="POST" 
-              data-netlify="true" 
+            <form
+              name="catalog-download"
+              method="POST"
+              data-netlify="true"
               netlify-honeypot="bot-field"
               className="space-y-4"
               onSubmit={handleLocalSubmit}
+              hidden={false} // não esconder no React, só no form.html
             >
               <input type="hidden" name="form-name" value="catalog-download" />
-              <input type="hidden" name="bot-field" />
-              {/* Netlify form detection */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name"
-                  className="mt-1 block w-full p-2 border rounded-md" 
-                  placeholder="Your Name" 
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Your Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  className="mt-1 block w-full p-2 border rounded-md" 
-                  placeholder="Your Email" 
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700">Select Your Role</label>
-                <select 
-                  id="role" 
-                  name="role"
-                  className="mt-1 block w-full p-2 border rounded-md"
-                  required
-                >
-                  <option>Designer</option>
-                  <option>Builder/Renovator</option>
-                  <option>Homeowner</option>
-                  <option>Property Manager</option>
-                </select>
-              </div>
+              <input type="text" name="name" id="name" className="mt-1 block w-full p-2 border rounded-md" placeholder="Your Name" required />
+              <input type="email" name="email" id="email" className="mt-1 block w-full p-2 border rounded-md" placeholder="Your Email" required />
+              <select name="role" id="role" className="mt-1 block w-full p-2 border rounded-md" required>
+                <option>Designer</option>
+                <option>Builder/Renovator</option>
+                <option>Homeowner</option>
+                <option>Property Manager</option>
+              </select>
+              <input type="text" name="bot-field" style={{display:'none'}} tabIndex="-1" autoComplete="off" />
               <div className="mt-6 text-center">
                 <button className="cta-button" type="submit">Download Catalog</button>
               </div>
