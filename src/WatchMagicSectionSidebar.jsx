@@ -16,7 +16,39 @@ const modes = [
   { key: 'anthem', icon: 'anthem.png', label: 'Anthem' }
 ];
 
-export default function WatchMagicSectionSidebar({ selectedLanguage, setSelectedLanguage, selectedMode, setSelectedMode, playSound }) {
+export default function WatchMagicSectionSidebar({ selectedLanguage, setSelectedLanguage, selectedMode, setSelectedMode }) {
+  // Controle de áudio global
+  const audioRef = React.useRef(null);
+
+  // Função para parar áudio atual
+  const stopAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current = null;
+    }
+  };
+
+  // Tocar áudio de idioma (nome do idioma no próprio idioma)
+  const playLanguageAudio = (langKey) => {
+    stopAudio();
+    const file = `/audio_labels/${langKey}_${langKey}.mp3`;
+    const audio = new window.Audio(file);
+    audioRef.current = audio;
+    audio.play();
+    audio.onended = () => { audioRef.current = null; };
+  };
+
+  // Tocar áudio de modo (nome do modo no idioma selecionado)
+  const playModeAudio = (modeKey) => {
+    stopAudio();
+    const file = `/audio_labels/${selectedLanguage}_${modeKey}.mp3`;
+    const audio = new window.Audio(file);
+    audioRef.current = audio;
+    audio.play();
+    audio.onended = () => { audioRef.current = null; };
+  };
+
   return (
     <aside className="magic-sidebar">
       <div className="sidebar-group mb-4">
@@ -26,7 +58,7 @@ export default function WatchMagicSectionSidebar({ selectedLanguage, setSelected
             className={`sidebar-icon${selectedLanguage === lang.key ? ' selected' : ''}`}
             onClick={() => {
               setSelectedLanguage(lang.key);
-              playSound();
+              playLanguageAudio(lang.key);
             }}
             title={lang.label}
           >
@@ -41,7 +73,7 @@ export default function WatchMagicSectionSidebar({ selectedLanguage, setSelected
             className={`sidebar-icon${selectedMode === mode.key ? ' selected' : ''}`}
             onClick={() => {
               setSelectedMode(mode.key);
-              playSound();
+              playModeAudio(mode.key);
             }}
             title={mode.label}
           >
@@ -52,3 +84,4 @@ export default function WatchMagicSectionSidebar({ selectedLanguage, setSelected
     </aside>
   );
 }
+
